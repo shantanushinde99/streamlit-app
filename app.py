@@ -3,8 +3,9 @@ import numpy as np
 import pickle as pk
 
 # Load the model and scaler
-loaded_model = pk.load(open("C:/Machine Learning/fuel consume/fuel consumption/trained_model_lr.sav", "rb"))
-scaled_data = pk.load(open("C:/Machine Learning/fuel consume/fuel consumption/scaled_data.sav", "rb"))
+loaded_model = pk.load(open("trained_model_lr.sav", "rb"))
+scaled_data = pk.load(open("scaled_data.sav", "rb"))
+
 
 # Function to convert the input values
 def input_converter(inp):
