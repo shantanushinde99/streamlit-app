@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Consumption Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: url("https://wallpapercave.com/wp/wp6696562.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        select, input {
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fuel Consumption Prediction</h1>
+        <form method="POST">
+            <label for="vehicle_class">Vehicle class:</label>
+            <select name="vehicle_class" id="vehicle_class" required>
+                {% for v in vehicle %}
+                <option value="{{ v }}">{{ v }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="engine_size">Engine Size:</label>
+            <input type="number" name="engine_size" id="engine_size" min="1" max="7" required>
+
+            <label for="cylinders">Number of Cylinders:</label>
+            <input type="number" name="cylinders" id="cylinders" min="1" max="16" required>
+
+            <label for="transmission">Transmission:</label>
+            <select name="transmission" id="transmission" required>
+                {% for t in transmission %}
+                <option value="{{ t }}">{{ t }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="co2_rating">CO2 Rating:</label>
+            <input type="number" name="co2_rating" id="co2_rating" min="1" max="10" required>
+
+            <label for="fuel_type">Fuel type:</label>
+            <select name="fuel_type" id="fuel_type" required>
+                {% for f in fuel %}
+                <option value="{{ f }}">{{ f }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Predict 🔍</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <h2>The Fuel Consumption L/100km is {{ result }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
